@@ -3,21 +3,21 @@ import { View, Text } from 'react-native';
 import { FormLabel,FormInput, Button } from 'react-native-elements';
 import axios from 'axios';
 
+
 const ROOT_URL = 'https://us-central1-haaa-41acd.cloudfunctions.net';
 
 class SignUpForm extends Components {
 	state = { phone:'' };
 
 	//using handleSubmit(){} will going to use this.handleSubmit.bind(this)
-	handleSubmit = () =>{
-		axios.post('${ROOT_URL}/createUser',{
-			phone: this.state.phone
-		})
-		.then(()=>{
-			axios.post('${ROOT_URL}/requestOneTimePasswords',{
-				phone:this.state.phone
-			});
-		});
+	handleSubmit = async () => {
+		try{
+			await axios.post('${ROOT_URL}/createUser',{ phone: this.state.phone });
+			await axios.post('${ROOT_URL}/requestOneTimePasswords',{ phone:this.state.phone });
+		}catch(err){
+			console.log(err);			
+
+		}
 	}
 
 	render(){
