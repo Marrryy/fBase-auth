@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "fBase-auth",
-    "slug": "fBase-auth",
+    "slug": "exercise",
     "privacy": "public",
-    "sdkVersion": "34.0.0",
+    "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
       "android",
