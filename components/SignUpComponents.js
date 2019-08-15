@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const ROOT_URL = 'https://us-central1-haaa-41acd.cloudfunctions.net';
 
-class SignInComponents extends Component {
+class SignUp extends Component {
 	constructor(props){
 		super(props);
 		this.state = { phone:'' };
@@ -43,4 +43,4 @@ class SignInComponents extends Component {
 	}
 }
 
-export default SignInComponents;
+export default SignUp;

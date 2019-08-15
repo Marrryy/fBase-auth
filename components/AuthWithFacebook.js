@@ -1,14 +1,47 @@
+//This course is from 091 -101
 import React, { Component } from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, AsyncStorage} from 'react-native';
+import { connect } from 'react-redux'; 
+import * as actions from '../actions'; 
 
-class AuthWithFacebook extends Component(){
-    render(){
-        return(
-            <View>
-                <Text>Auth </Text>
-            </View>
-        );
+class AuthWithFacebook extends Component{
+  
+  static navigationOptions = {
+    title:'Auth With Fb'
+  };
+
+  componentDidMount(){
+    this.props.facebookLogin(); 
+    // AsyncStorage.removeItem('fb_token');
+    this.onAuthComplete(this.props);
+  }
+
+  //rerender
+  componentWillReceiveProps(nextProps){
+    this.onAuthComplete(nextProps);
+  }
+
+  onAuthComplete(props){
+    if(props.token){
+      this.props.navigation.navigate('Map');
     }
+  }
+
+  render(){
+    return(
+      <View>
+        <Text>Auth </Text>
+        <Text>Auth </Text>
+        <Text>Auth </Text>
+        <Text>Auth </Text>
+        <Text>Auth </Text>
+      </View>
+    );
+  }
 }
 
-export default AuthWithFacebook;
+function mapStateToProps({auth}){
+  return { token : auth.token }
+}
+
+export default connect(mapStateToProps, actions)(AuthWithFacebook);

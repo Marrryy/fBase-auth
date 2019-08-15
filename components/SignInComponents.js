@@ -1,13 +1,13 @@
 import React , {Component} from 'react';
 import { Input , Button} from 'react-native-elements';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import axios from 'axios';
 import firebase from 'firebase';
 
 const ROOT_URL = 'https://us-central1-haaa-41acd.cloudfunctions.net';
 
 
-class SignInComponents extends Component{
+class SignIn extends Component{
 	constructor(props){
 		super(props);
 		this.state = { 
@@ -22,8 +22,9 @@ class SignInComponents extends Component{
 				phone:this.state.phone, code:this.state.code
       });
       
-			console.log(resp.data.token);				
-			firebase.auth().signInWithCustomToken(data.token);  
+		firebase.auth().signInWithCustomToken(data.token);  
+		console.log(data.token);		
+		Alert.alert("You are Now Logged In");
 
 		}catch (err){
 			console.log(err);
@@ -55,4 +56,4 @@ class SignInComponents extends Component{
   }
 }
 
-export default SignInComponents;
+export default SignIn;
