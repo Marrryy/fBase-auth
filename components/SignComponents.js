@@ -27,7 +27,7 @@ class Sign extends Component{
   }
   render(){
       return (
-        <View style={{flex:1, alignConten:"center", justifyContent:'center'}}>
+        <View style={{flex:1, alignConten:"center", justifyContent:'space-around'}}>
           <SignUp/>
           <Text>---------------</Text>
           <SignIn/>

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { View, Platform, StyleSheet } from 'react-native';
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import Home from './HomeComponent';
 import Sign from './SignComponents';
 import AuthWithFacebook from './AuthWithFacebook';
 import MapScreen from './MapComponents';
+import Deck from './DeckComponents';
+import Review from './ReviewComponents';
+import Setting from './SettingComponent';
 
 
 const HomeNavigator = createStackNavigator({
@@ -30,6 +33,11 @@ const HomeNavigator = createStackNavigator({
     })
 });
 
+const ReviewNavigator = createStackNavigator({
+  Review: { screen: Review },
+  Setting: {screen: Setting}
+});
+
 const AuthNavigator = createStackNavigator({
   Auth: { screen: AuthWithFacebook, 
     navigationOptions:({ navigation})=>({
@@ -39,7 +47,12 @@ const AuthNavigator = createStackNavigator({
                   onPress={()=>navigation.toggleDrawer()}
       />
     }) },
-    Map:{ screen:MapScreen }
+    Tab:{ screen: createBottomTabNavigator({  
+      Map: MapScreen,
+      Deck: Deck,
+      Review: ReviewNavigator  
+    })
+  }
 }, {
   navigationOptions: ({ navigation }) => ({
     headerStyle: {

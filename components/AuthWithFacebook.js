@@ -23,7 +23,7 @@ class AuthWithFacebook extends Component{
 
   onAuthComplete(props){
     if(props.token){
-      this.props.navigation.navigate('Map');
+      this.props.navigation.navigate('Tab');
     }
   }
 
