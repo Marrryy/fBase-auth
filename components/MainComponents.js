@@ -47,11 +47,21 @@ const AuthNavigator = createStackNavigator({
                   onPress={()=>navigation.toggleDrawer()}
       />
     }) },
-    Tab:{ screen: createBottomTabNavigator({  
+  Tab:{ screen: createBottomTabNavigator({  
       Map: MapScreen,
       Deck: Deck,
       Review: ReviewNavigator  
-    })
+    }), 
+    navigationOptions:{ 
+      header: null
+    },
+    tabBarPosition:'bottom',
+    swipeEnabled:false,
+    tabBarOptions:{
+      labelStyle:{ fontSize : 12},
+      showIcon: true,
+      showLabel: true
+    }
   }
 }, {
   navigationOptions: ({ navigation }) => ({

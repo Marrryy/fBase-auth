@@ -3,11 +3,21 @@ import React , {Component} from 'react';
 import { View, Text , ActivityIndicator} from 'react-native';
 import MapView from 'react-native-maps';
 import { connect } from 'react-redux';
-import { Button } from 'react-native-elements'
+import { Button, Icon } from 'react-native-elements'
 
 import * as actions from '../actions'
 
 class MapScreen extends Component{
+  static navigationOptions = {
+    title:'Jobs',
+    tabBarIcon:({ tintColor }) => {
+      return <Icon 
+              name="my-location"
+              size={30}
+              color={tintColor}
+              />
+    }
+  };  
 
   state={
     mapLoaded:false,
@@ -33,6 +43,8 @@ class MapScreen extends Component{
 
   onButtonPress= () =>{
     this.props.fetchJobs(this.state.region);
+    this.props.navigation.navigate('Deck');
+
   }
 
   render(){
