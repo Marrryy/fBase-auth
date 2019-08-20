@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, Platform, StyleSheet } from 'react-native';
+import { View, Platform, Alert } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
+import { Notifications } from 'expo';
 
+import registerForNotifications from '../services/push_notifications';
 import Home from './HomeComponent';
 import Sign from './SignComponents';
 import AuthWithFacebook from './AuthWithFacebook';
@@ -10,6 +12,7 @@ import MapScreen from './MapComponents';
 import Deck from './DeckComponents';
 import Review from './ReviewComponents';
 import Setting from './SettingComponent';
+import Message from './ClassMessage';
 
 
 const HomeNavigator = createStackNavigator({
@@ -117,7 +120,7 @@ const MainNavigator = createDrawerNavigator({
           title: 'Sign',
           drawerLabel: 'Sign In/Up',
         }, 
-      }
+      },
 }, {
   initialRouteName:'Home',
   drawerBackgroundColor: '#D1C4E9',
@@ -131,31 +134,23 @@ const MainNavigator = createDrawerNavigator({
   // }
 });
 
-const style=StyleSheet.create({
-  container:{
-    flex:1,
-  }, 
-  drawerHeader: {
-    backgroundColor: '#512DA8',
-    height: 140,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    flexDirection: 'row'
-  },
-  drawerHeaderText: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold'
-  },
-  drawerImage: {
-    margin: 10,
-    width: 80,
-    height: 60
-  }
-});
-
 class Main extends Component{
+  componentDidMount(){
+    registerForNotifications();
+    Notifications.addListener((notification) => {
+      const { data: {text}, origin } = notification;
+
+      if(origin === 'received' && text){
+        Alert.alert(
+          'New Push Notification',
+          text,
+          [{ text: 'Ok' }]
+        );
+      }
+    });
+  };
+
+
   render(){
       return (
           <View style={{flex:1, paddingTop:Platform.OS=== 'ios' ? 0 : Expo.Constants.statusBarHeight}}>
