@@ -12,7 +12,8 @@ import MapScreen from './MapComponents';
 import Deck from './DeckComponents';
 import Review from './ReviewComponents';
 import Setting from './SettingComponent';
-import Message from './ClassMessage';
+// import Message from './ClassMessage';
+import PinNavigators from './PinComponents';
 
 
 const HomeNavigator = createStackNavigator({
@@ -99,6 +100,7 @@ const SignNavigator = createStackNavigator({
     })
 });
 
+
 const MainNavigator = createDrawerNavigator({
     Home: 
       { screen: HomeNavigator,
@@ -119,6 +121,13 @@ const MainNavigator = createDrawerNavigator({
         navigationOptions: {
           title: 'Sign',
           drawerLabel: 'Sign In/Up',
+        }, 
+      },
+    Pin: 
+      { screen: PinNavigators,
+        navigationOptions: {
+          title: 'Pin',
+          drawerLabel: 'Enter Pin',
         }, 
       },
 }, {
