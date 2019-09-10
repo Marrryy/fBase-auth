@@ -14,6 +14,8 @@ import Review from './ReviewComponents';
 import Setting from './SettingComponent';
 // import Message from './ClassMessage';
 import PinNavigators from './PinComponents';
+import CarouselComponent from './CarouselComponent';
+import Step from './StepComponent';
 
 
 const HomeNavigator = createStackNavigator({
@@ -25,17 +27,7 @@ const HomeNavigator = createStackNavigator({
                     onPress={()=>navigation.toggleDrawer()}
         />
       }) },
-  }, {
-    navigationOptions: ({ navigation }) => ({
-      headerStyle: {
-          backgroundColor: "#512DA8"
-      },
-      headerTitleStyle: {
-          color: "#fff"            
-      },
-      headerTintColor: "#fff"  
-    })
-});
+  });
 
 const ReviewNavigator = createStackNavigator({
   Review: { screen: Review },
@@ -67,16 +59,6 @@ const AuthNavigator = createStackNavigator({
       showLabel: true
     }
   }
-}, {
-  navigationOptions: ({ navigation }) => ({
-    headerStyle: {
-        backgroundColor: "#512DA8"
-    },
-    headerTitleStyle: {
-        color: "#fff"            
-    },
-    headerTintColor: "#fff"  
-  })
 });
 
 const SignNavigator = createStackNavigator({
@@ -88,18 +70,12 @@ const SignNavigator = createStackNavigator({
                     onPress={()=>navigation.toggleDrawer()}
         />
       }) },
-  }, {
-    navigationOptions: ({ navigation }) => ({
-      headerStyle: {
-          backgroundColor: "#512DA8"
-      },
-      headerTitleStyle: {
-          color: "#fff"            
-      },
-      headerTintColor: "#fff"  
-    })
-});
+  });
 
+const StepNavigator = createStackNavigator({
+  Step: { screen: Step },
+  Carousel:{screen:CarouselComponent}
+});
 
 const MainNavigator = createDrawerNavigator({
     Home: 
@@ -128,6 +104,13 @@ const MainNavigator = createDrawerNavigator({
         navigationOptions: {
           title: 'Pin',
           drawerLabel: 'Enter Pin',
+        }, 
+      },
+    Step: 
+      { screen: StepNavigator,
+        navigationOptions: {
+          title: 'Step',
+          drawerLabel: '3 Step',
         }, 
       },
 }, {

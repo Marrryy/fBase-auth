@@ -242,16 +242,6 @@ const PinNavigators = createStackNavigator({
     />
   }) },
   Congrats: {screen: Congrats}
-}, {
-  navigationOptions: ({ navigation }) => ({
-    headerStyle: {
-        backgroundColor: "#512DA8"
-    },
-    headerTitleStyle: {
-        color: "#fff"            
-    },
-    headerTintColor: "#fff"  
-  })
 });
 
 export default PinNavigators;
